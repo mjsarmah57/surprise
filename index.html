@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #ff6b6b, #f06595);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+      .container {
+            text-align: center;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #timer {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 3em;
+            margin-bottom: 30px;
+            padding: 20px 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            font-size: 1.2em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+      .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 2s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        #timeout-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #ff6b6b, #f06595);
+            color: white;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #timeout-page h1 {
+            font-size: 2.5em;
+        }
+
+        #timeout-page a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+
+        #timeout-page a:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div id="current-date-time"></div>
+    </header>
+
+    <div class="container">
+        <h1>Something Amazing is Coming Soon!</h1>
+        <div id="timer"></div>
+        <p>We're working hard to bring you something special. Stay tuned!</p>
+    </div>
+
+    <footer>
+        &copy; 2024 My Company. All rights reserved.
+    </footer>
+
+    <div id="timeout-page">
+        <h1>The time has passed!</h1>
+        <p>But don't worry, you can still access the surprise:</p>
+        <a href="https://www.google.com">Click Here!</a>
+    </div>
+
+    <script>
+        const timerDisplay = document.getElementById('timer');
+        const targetDate = new Date('2025-02-05T13:10:00'); // **CHANGE THIS DATE AND TIME**
+        const timeoutPage = document.getElementById('timeout-page');
+        const container = document.querySelector('.container');
+        let userActive = true;
+
+        const TIMER_ENDED_KEY = 'timerEnded';
+        let timerEnded = localStorage.getItem(TIMER_ENDED_KEY) === 'true';
+
+        if (timerEnded) {
+            showTimeoutPage();
+        }
+
+        let inactivityTimeout;
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimeout);
+            userActive = true;
+            inactivityTimeout = setTimeout(() => {
+                userActive = false;
+            }, 300000); // 5 minutes
+        }
+
+        document.addEventListener('mousemove', resetInactivityTimer);
+        document.addEventListener('keydown', resetInactivityTimer);
+        resetInactivityTimer();
+
+        function updateTimer() {
+            const now = new Date();
+            const timeLeft = targetDate.getTime() - now.getTime();
+
+            if (timeLeft < 0) {
+                clearInterval(timerInterval);
+                localStorage.setItem(TIMER_ENDED_KEY, 'true');
+                timerEnded = true;
+
+                if (userActive) {
+                    window.location.href = "https://www.google.com";
+                } else {
+                    showTimeoutPage();
+                }
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            timerDisplay.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        function showTimeoutPage() {
+            container.style.display = "none";
+            timeoutPage.style.display = "flex";
+        }
+
+        updateTimer();
+        const timerInterval = setInterval(updateTimer, 1000);
+
+        const numStars = 100;
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(star);
+        }
+
+        const dateTimeDisplay = document.getElementById("current-date-time");
+
+        function updateDateTime() {
+            const now = new Date();
+
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+
+            const currentDate = now.toLocaleDateString(undefined, dateOptions);
+            const currentTime = now.toLocaleTimeString(undefined, timeOptions);
+
+            dateTimeDisplay.textContent = `${currentDate} - ${currentTime}`;
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+
+</body>
+</html>
