@@ -1,0 +1,307 @@
+/* style.css */
+body {
+    background: url("background.png"); /* Replace with your background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keep background fixed during scroll */
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full viewport height */
+    color: #fff; /* White text for contrast */
+    overflow:auto; /* Hide scrollbars */
+
+    flex-direction: column;
+
+
+}.container {
+    text-align: center;
+    padding: 20px;
+    max-width: 600px; /* Limit width for larger screens */
+    margin: 20px; /* Add margin for spacing */
+
+    flex: 1;
+
+}.content {
+    background-color: rgba(255, 255, 255, 0.567); /* Semi-transparent white background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.413); /* Add shadow */
+}
+.content button{
+    padding: 10px 20px;
+    background-color: #ff0084;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+h1 {
+    color: rgb(255, 47, 131);
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+h2{
+    color: rgb(255, 47, 131);
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+p {
+    color: rgb(255, 78, 134);
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+.heart {
+    max-width: 200px; /* Adjust heart size */
+    margin-top: 20px;
+    display: block; /* Make heart a block element */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) { /* Styles for smaller screens (e.g., mobile) */
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+  .heart {
+        max-width: 150px;
+    }
+}
+
+footer {
+    background-color: rgba(255, 255, 255, 0.567); /* Darker footer background */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto; /* Space between content and footer */
+    position: relative; /* For proper placement */
+    bottom: 0; /* Stick to the bottom */
+    width: auto; /* Full width */
+
+}
+
+footer p {
+    line-height: 0.5;
+}
+
+
+
+
+
+/* Landing Page Styles */
+#landing-page {
+    position: fixed; /* Cover the entire screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(248, 98, 146); /* Dark semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2; /* Ensure it's on top */
+}.landing-content {
+    background-color: rgb(255, 255, 255); /* Slightly opaque white */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: #333;
+
+}
+
+.landing-content p{
+    line-height: 0.5;
+}
+.landing-content button {
+    padding: 10px 20px;
+    background-color: #ff0084;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Surprise Page Styles */
+#surprise-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}.surprise-content {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: #333;
+}.surprise-date {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#surprise-page button {
+    padding: 10px 20px;
+    background-color: #ff0084;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+#gallery {
+    text-align: center; /* Center the heading and button */
+    padding: 20px; /* Add padding around the gallery content */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-top: 20px;
+
+}
+
+#gallery h2 {
+    margin-bottom: 20px; /* Add space below the heading */
+}
+
+.gallery-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    grid-gap: 15px;
+    padding: 10px
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+.gallery-grid img:hover{
+    transform: scale(1.05);
+}
+
+#gallery-button{
+    display: block;
+    margin: 20px auto; /* Center the buttons */
+    padding: 10px 20px;
+    background-color: #ff0084;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#back-to-main-from-gallery {
+    display: inline-block; /* Make the button an inline-block element */
+    margin-top: 20px; /* Add space above the button */
+    padding: 10px 20px;
+    justify-content:space-between;
+    background-color: #ff0084;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/*... other styles... */
+.image-box {
+    background-color: rgba(255, 255, 255, 0.666);
+    position: relative;
+    display: block;
+    margin: 0px;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* More rounded corners */
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}.image-box img {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease; /* Add a zoom effect on hover */
+}.image-box:hover img {
+    transform: scale(0.9); /* Zoom in on hover */
+}.image-box.caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background */
+    color: white;
+    padding: 15px; /* Increased padding */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-family: 'Roboto', sans-serif; /* Use a nicer font */
+}.image-box:hover.caption {
+    opacity: 1;
+}.image-box.date {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}.image-box.description {
+    font-size: 1em;
+}
+
+
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #ff0084;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10;
+
+    /* Add responsive styles */
+    font-size: 1rem; /* Adjust base font size */
+}
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+    #back-to-top {
+        bottom: 10px; /* Reduce bottom spacing on smaller screens */
+        right: 10px; /* Reduce right spacing on smaller screens */
+        padding: 8px 16px; /* Reduce padding on smaller screens */
+        font-size: 0.9rem; /* Slightly smaller font size */
+    }
+}
+
+@media (max-width: 480px) { /* Adjust breakpoint as needed */
+    #back-to-top {
+        font-size: 0.8rem; /* Even smaller font size */
+    }
+}
